@@ -216,6 +216,15 @@ export async function registerRoutes(
 
 async function seedAdmin() {
   const adminUsername = "714752420017";
+  
+  // Delete old admin if exists
+  const oldAdmin = await storage.getUserByUsername("admin");
+  if (oldAdmin) {
+    await storage.deleteUser(oldAdmin.id);
+    console.log("Old admin user deleted");
+  }
+  
+  // Create new admin if doesn't exist
   const existingAdmin = await storage.getUserByUsername(adminUsername);
   if (!existingAdmin) {
     const password = await hashPassword("Ba@606368");
