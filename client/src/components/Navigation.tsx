@@ -24,8 +24,8 @@ export function Navigation() {
     <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-md z-50 border-b border-border/40">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="font-serif text-2xl font-bold text-primary tracking-wide">
-          Luxe<span className="text-secondary">Salon</span>
+        <Link href="/" className="flex items-center">
+          <img src="/logo-full.png" alt="Canadian Luxurious Salon" className="h-12 w-auto" />
         </Link>
 
         {/* Desktop Links */}

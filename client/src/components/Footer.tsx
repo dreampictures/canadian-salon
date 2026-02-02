@@ -7,7 +7,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Brand */}
         <div className="space-y-4">
-          <h3 className="font-serif text-3xl font-bold text-secondary">LuxeSalon</h3>
+          <img src="/logo-full.png" alt="Canadian Luxurious Salon" className="h-12 w-auto brightness-0 invert" />
           <p className="text-primary-foreground/70 leading-relaxed">
             Where beauty meets luxury. We provide premium salon services and professional certification courses for aspiring beauty experts.
           </p>
@@ -65,7 +65,7 @@ export function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/10 text-center text-sm text-primary-foreground/40">
-        © {new Date().getFullYear()} LuxeSalon. All rights reserved.
+        © {new Date().getFullYear()} Canadian Luxurious Salon. All rights reserved.
       </div>
     </footer>
   );

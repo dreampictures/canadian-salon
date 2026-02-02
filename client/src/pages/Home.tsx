@@ -38,7 +38,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg md:text-xl text-white/90 font-light max-w-2xl mx-auto leading-relaxed"
           >
-            Experience premium care and professional styling at LuxeSalon. 
+            Experience premium care and professional styling at Canadian Luxurious Salon. 
             We define elegance through our expert services and training.
           </motion.p>
           <motion.div 

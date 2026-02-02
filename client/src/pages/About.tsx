@@ -14,7 +14,7 @@ export default function About() {
         <div className="relative z-10 px-6">
           <h1 className="font-serif text-5xl font-bold mb-6">Our Story</h1>
           <p className="text-white/80 max-w-2xl mx-auto text-lg">
-            Founded in 2010, LuxeSalon has been at the forefront of luxury beauty and education.
+            Founded in 2010, Canadian Luxurious Salon has been at the forefront of luxury beauty and education.
           </p>
         </div>
       </div>
@@ -26,7 +26,7 @@ export default function About() {
           <div className="space-y-6">
             <SectionHeader title="Redefining Beauty" centered={false} />
             <p className="text-muted-foreground text-lg leading-relaxed">
-              At LuxeSalon, we believe that beauty is an art form. Our mission is to provide 
+              At Canadian Luxurious Salon, we believe that beauty is an art form. Our mission is to provide 
               an oasis of calm where you can escape the daily grind and emerge feeling refreshed 
               and confident.
             </p>

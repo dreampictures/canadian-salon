@@ -70,53 +70,67 @@ export default function VerifyCertificate() {
               <XCircle className="w-16 h-16 text-destructive mx-auto mb-4" />
               <h3 className="text-2xl font-bold text-destructive mb-2">Invalid Certificate</h3>
               <p className="text-destructive/80">
-                The certificate number "{searchQuery}" could not be found in our records.
+                The certificate number "{searchQuery}" could not be found in our records. Please contact Canadian Luxurious Salon for verification.
               </p>
             </div>
           )}
 
           {certificate && (
             <div className="bg-white border-2 border-secondary/30 rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden animate-in zoom-in-95 duration-500">
-              {/* Decorative Background */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full -mr-32 -mt-32" />
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full -ml-32 -mb-32" />
 
-              <div className="relative z-10 text-center space-y-8">
-                <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full font-bold text-sm uppercase tracking-wide">
-                  <CheckCircle className="w-4 h-4" /> Verified Authentic
-                </div>
-
-                <div>
-                  <h2 className="font-serif text-3xl md:text-4xl font-bold text-primary mb-2">
-                    {certificate.studentName}
-                  </h2>
-                  <p className="text-muted-foreground uppercase tracking-widest text-sm">Student Name</p>
-                </div>
-
-                <div className="h-px w-full bg-border/50" />
-
-                <div className="grid grid-cols-2 gap-8 text-left">
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Course</p>
-                    <p className="font-serif text-xl font-bold text-primary">{certificate.courseName}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Certificate No</p>
-                    <p className="font-mono text-lg font-medium text-primary">{certificate.certificateNumber}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Grade</p>
-                    <p className="font-bold text-lg text-primary">{certificate.grade}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Issued Date</p>
-                    <p className="font-medium text-lg text-primary">{new Date(certificate.issueDate).toLocaleDateString()}</p>
+              <div className="relative z-10 space-y-8">
+                <div className="text-center mb-8">
+                  <img src="/logo-icon.png" alt="Salon Logo" className="h-20 w-auto mx-auto mb-4" />
+                  <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full font-bold text-sm uppercase tracking-wide">
+                    <CheckCircle className="w-4 h-4" /> Valid Certificate
                   </div>
                 </div>
 
-                <div className="pt-8 border-t border-border/50">
+                <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                  <div className="flex-1 space-y-6">
+                    <div>
+                      <h2 className="font-serif text-3xl md:text-4xl font-bold text-primary mb-1">
+                        {certificate.studentName}
+                      </h2>
+                      <p className="text-muted-foreground uppercase tracking-widest text-xs">Student Name</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                      <div>
+                        <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Course</p>
+                        <p className="font-serif text-xl font-bold text-primary">{certificate.courseName}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Certificate No</p>
+                        <p className="font-mono text-lg font-medium text-primary">{certificate.certificateNumber}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Grade</p>
+                        <p className="font-bold text-lg text-primary">{certificate.grade}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Duration</p>
+                        <p className="font-bold text-lg text-primary">{certificate.courseDuration}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Issued Date</p>
+                        <p className="font-medium text-lg text-primary">{new Date(certificate.issueDate).toLocaleDateString()}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {certificate.studentPhoto && (
+                    <div className="w-48 h-60 rounded-lg overflow-hidden border-4 border-secondary/20 shadow-lg shrink-0">
+                      <img src={certificate.studentPhoto} alt={certificate.studentName} className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                </div>
+
+                <div className="pt-8 border-t border-border/50 text-center">
                   <p className="text-sm text-muted-foreground italic">
-                    This certificate was officially issued by LuxeSalon Academy.
+                    This certificate was officially verified by Canadian Luxurious Salon Academy.
                   </p>
                 </div>
               </div>
