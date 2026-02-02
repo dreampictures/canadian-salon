@@ -55,6 +55,7 @@ export function useAuth() {
     onSuccess: () => {
       queryClient.setQueryData([api.auth.me.path], null);
       toast({ title: "Logged out", description: "See you soon." });
+      window.location.href = "/";
     },
   });
 

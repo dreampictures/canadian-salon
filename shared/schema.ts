@@ -39,6 +39,7 @@ export const contactMessages = pgTable("contact_messages", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull(),
+  mobile: text("mobile").notNull(),
   message: text("message").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
@@ -64,6 +65,7 @@ export const insertContactMessageSchema = createInsertSchema(contactMessages)
   .extend({
     name: z.string().min(1, "Name is required"),
     email: z.string().email("Valid email is required"),
+    mobile: z.string().min(10, "Valid mobile number is required"),
     message: z.string().min(1, "Message is required"),
   });
 

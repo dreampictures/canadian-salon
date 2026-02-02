@@ -17,7 +17,7 @@ export default function Contact() {
 
   const form = useForm<ContactForm>({
     resolver: zodResolver(insertContactMessageSchema),
-    defaultValues: { name: "", email: "", message: "" }
+    defaultValues: { name: "", email: "", mobile: "", message: "" }
   });
 
   function onSubmit(data: ContactForm) {
@@ -110,6 +110,27 @@ export default function Contact() {
                           {...field} 
                           className="h-12 water-drop-input rounded-xl" 
                           data-testid="input-email"
+                          required
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="mobile"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-foreground font-semibold">Mobile Number <span className="text-destructive">*</span></FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="+91 XXXXX XXXXX" 
+                          type="tel"
+                          {...field} 
+                          className="h-12 water-drop-input rounded-xl" 
+                          data-testid="input-mobile"
                           required
                         />
                       </FormControl>

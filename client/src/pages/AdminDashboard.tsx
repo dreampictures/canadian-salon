@@ -446,6 +446,7 @@ function MessagesViewer() {
             <TableHead>Date</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Email</TableHead>
+            <TableHead>Mobile</TableHead>
             <TableHead>Message</TableHead>
             <TableHead className="text-right">Actions</TableHead>
           </TableRow>
@@ -458,6 +459,7 @@ function MessagesViewer() {
               </TableCell>
               <TableCell className="font-medium">{msg.name}</TableCell>
               <TableCell>{msg.email}</TableCell>
+              <TableCell className="whitespace-nowrap">{msg.mobile}</TableCell>
               <TableCell className="max-w-md truncate" title={msg.message}>{msg.message}</TableCell>
               <TableCell className="text-right">
                 <Button variant="destructive" size="icon" onClick={() => deleteMessage(msg.id)}>
