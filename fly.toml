@@ -6,6 +6,9 @@ primary_region = "bom"  # Mumbai, India - same region as database
 
 [build]
 
+[deploy]
+  release_command = "npm run db:push"
+
 [env]
   NODE_ENV = "production"
   PORT = "5000"
@@ -19,7 +22,7 @@ primary_region = "bom"  # Mumbai, India - same region as database
   processes = ["app"]
 
 [[http_service.checks]]
-  grace_period = "10s"
+  grace_period = "30s"
   interval = "30s"
   method = "GET"
   path = "/api/health"
