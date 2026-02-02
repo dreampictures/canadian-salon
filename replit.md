@@ -49,6 +49,11 @@ A luxury salon website with certificate verification system. Features include:
 - `POST /api/contact` - Submit contact message
 - Admin routes require authentication
 
+## Contact Information
+- Address: Shop No. 2 Dharamkot Road Jogewala, Ferozepur, PB 142044 IN
+- Phone: +91 90561 63862
+- Email: info@canadianluxurioussalon.com
+
 ## Environment Variables Required
 - `DATABASE_URL` - PostgreSQL connection string
 - `SESSION_SECRET` - Secret for session encryption

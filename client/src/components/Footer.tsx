@@ -49,23 +49,31 @@ export function Footer() {
           <h4 className="font-serif text-xl font-semibold text-secondary">Contact Us</h4>
           <div className="space-y-3">
             <div className="flex items-start gap-3 text-primary-foreground/70">
-              <MapPin className="w-5 h-5 mt-0.5 text-secondary" />
-              <span>123 Luxury Ave, Beverly Hills,<br />CA 90210</span>
+              <MapPin className="w-5 h-5 mt-0.5 text-secondary shrink-0" />
+              <span>Shop No. 2 Dharamkot Road Jogewala,<br />Ferozepur, PB 142044 IN</span>
             </div>
             <div className="flex items-center gap-3 text-primary-foreground/70">
-              <Phone className="w-5 h-5 text-secondary" />
-              <span>+1 (555) 123-4567</span>
+              <Phone className="w-5 h-5 text-secondary shrink-0" />
+              <a href="tel:+919056163862" className="hover:text-secondary transition-colors">+91 90561 63862</a>
             </div>
             <div className="flex items-center gap-3 text-primary-foreground/70">
-              <Mail className="w-5 h-5 text-secondary" />
-              <span>hello@luxesalon.com</span>
+              <Mail className="w-5 h-5 text-secondary shrink-0" />
+              <a href="mailto:info@canadianluxurioussalon.com" className="hover:text-secondary transition-colors">info@canadianluxurioussalon.com</a>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/10 text-center text-sm text-primary-foreground/40">
-        © {new Date().getFullYear()} Canadian Luxurious Salon. All rights reserved.
+      <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/40">
+        <span>© {new Date().getFullYear()} Canadian Luxurious Salon. All rights reserved.</span>
+        <a 
+          href="https://www.thedreampictures.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="hover:text-secondary transition-colors"
+        >
+          Managed By Dream Pictures
+        </a>
       </div>
     </footer>
   );

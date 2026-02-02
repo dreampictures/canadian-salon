@@ -8,28 +8,28 @@ const services = [
   {
     category: "Hair Care",
     items: [
-      { name: "Signature Haircut", price: "$50+" },
-      { name: "Balayage & Coloring", price: "$120+" },
-      { name: "Keratin Treatment", price: "$150+" },
-      { name: "Hair Spa", price: "$45+" },
+      { name: "Signature Haircut", price: "₹500+" },
+      { name: "Balayage & Coloring", price: "₹2,500+" },
+      { name: "Keratin Treatment", price: "₹3,500+" },
+      { name: "Hair Spa", price: "₹800+" },
     ]
   },
   {
     category: "Skin & Beauty",
     items: [
-      { name: "Classic Facial", price: "$60+" },
-      { name: "Bridal Makeup", price: "$200+" },
-      { name: "HydraFacial", price: "$90+" },
-      { name: "Waxing (Full Body)", price: "$80+" },
+      { name: "Classic Facial", price: "₹1,200+" },
+      { name: "Bridal Makeup", price: "₹8,000+" },
+      { name: "HydraFacial", price: "₹2,500+" },
+      { name: "Waxing (Full Body)", price: "₹1,500+" },
     ]
   },
   {
     category: "Nails",
     items: [
-      { name: "Gel Manicure", price: "$40+" },
-      { name: "Classic Pedicure", price: "$35+" },
-      { name: "Nail Art", price: "$15+" },
-      { name: "Acrylic Extensions", price: "$55+" },
+      { name: "Gel Manicure", price: "₹600+" },
+      { name: "Classic Pedicure", price: "₹500+" },
+      { name: "Nail Art", price: "₹300+" },
+      { name: "Acrylic Extensions", price: "₹1,200+" },
     ]
   }
 ];
@@ -38,19 +38,19 @@ const courses = [
   {
     title: "Professional Makeup Artist",
     duration: "3 Months",
-    price: "$1200",
+    price: "₹35,000",
     features: ["Basic to Advanced Techniques", "Bridal Makeup", "Portfolio Building", "Certification"]
   },
   {
     title: "Hair Styling Masterclass",
     duration: "2 Months",
-    price: "$950",
+    price: "₹25,000",
     features: ["Cutting Techniques", "Color Theory", "Chemical Treatments", "Certification"]
   },
   {
     title: "Complete Cosmetology",
     duration: "6 Months",
-    price: "$2500",
+    price: "₹75,000",
     features: ["Hair, Skin & Nails", "Salon Management", "Client Handling", "Internship"]
   }
 ];
@@ -161,7 +161,7 @@ export default function Services() {
                     Contact Us
                   </button>
                   <button 
-                    onClick={() => window.open('tel:+1234567890', '_self')}
+                    onClick={() => window.open('tel:+919056163862', '_self')}
                     className="glass-button px-8 py-3 rounded-xl font-bold text-primary flex items-center justify-center gap-2"
                     data-testid="button-call-now"
                   >

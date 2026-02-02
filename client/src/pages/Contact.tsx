@@ -49,9 +49,9 @@ export default function Contact() {
 
             <div className="space-y-6">
               {[
-                { icon: MapPin, title: "Location", text: "123 Luxury Ave, Beverly Hills, CA 90210" },
-                { icon: Phone, title: "Phone", text: "+1 (555) 123-4567" },
-                { icon: Mail, title: "Email", text: "hello@luxesalon.com" },
+                { icon: MapPin, title: "Location", text: "Shop No. 2 Dharamkot Road Jogewala, Ferozepur, PB 142044 IN" },
+                { icon: Phone, title: "Phone", text: "+91 90561 63862", href: "tel:+919056163862" },
+                { icon: Mail, title: "Email", text: "info@canadianluxurioussalon.com", href: "mailto:info@canadianluxurioussalon.com" },
                 { icon: Clock, title: "Hours", text: "Mon-Sat: 9am - 8pm, Sun: Closed" },
               ].map((item, idx) => (
                 <div key={idx} className="flex items-start gap-4 p-4 rounded-xl glass-card shadow-sm hover:shadow-md transition-shadow">
@@ -60,7 +60,11 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-bold text-primary">{item.title}</h4>
-                    <p className="text-foreground">{item.text}</p>
+                    {item.href ? (
+                      <a href={item.href} className="text-foreground hover:text-primary transition-colors">{item.text}</a>
+                    ) : (
+                      <p className="text-foreground">{item.text}</p>
+                    )}
                   </div>
                 </div>
               ))}

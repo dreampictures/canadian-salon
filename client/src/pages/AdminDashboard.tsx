@@ -6,7 +6,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCertificates, useCreateCertificate, useDeleteCertificate } from "@/hooks/use-certificates";
 import { useGallery, useCreateGalleryItem, useDeleteGalleryItem } from "@/hooks/use-gallery";
 import { useContactMessages } from "@/hooks/use-contact";
-import { DataTable } from "@/components/ui/table"; // Assuming standard Shadcn table structure or custom
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -126,6 +125,8 @@ function CertificatesManager() {
 
 function CreateCertificateDialog({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) {
   const { mutate: createCert, isPending } = useCreateCertificate();
+  const [photoPreview, setPhotoPreview] = useState<string>("");
+  
   const form = useForm({
     resolver: zodResolver(insertCertificateSchema),
     defaultValues: {
@@ -145,21 +146,58 @@ function CreateCertificateDialog({ open, onOpenChange }: { open: boolean, onOpen
       onSuccess: () => {
         onOpenChange(false);
         form.reset();
+        setPhotoPreview("");
       }
     });
   }
+
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        form.setValue("studentPhoto", base64String);
+        setPhotoPreview(base64String);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
         <Button className="bg-primary text-white"><Plus className="w-4 h-4 mr-2" /> Issue New</Button>
       </DialogTrigger>
-      <DialogContent className="max-w-lg">
+      <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Issue New Certificate</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            {/* Student Photo Upload */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Student Photo</label>
+              <div className="flex items-center gap-4">
+                <div className="w-24 h-24 rounded-full border-2 border-dashed border-border flex items-center justify-center overflow-hidden bg-muted">
+                  {photoPreview ? (
+                    <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-xs text-muted-foreground text-center px-2">No photo</span>
+                  )}
+                </div>
+                <div className="flex-1">
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    onChange={handlePhotoChange}
+                    className="cursor-pointer"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">Upload student photo (JPG, PNG)</p>
+                </div>
+              </div>
+            </div>
+            
             <FormField control={form.control} name="studentName" render={({ field }) => (
               <FormItem><FormLabel>Student Name</FormLabel><FormControl><Input {...field} /></FormControl></FormItem>
             )} />
