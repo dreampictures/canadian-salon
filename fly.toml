@@ -1,8 +1,8 @@
 # fly.toml - Fly.io Configuration for Canadian Luxurious Salon
 # See https://fly.io/docs/reference/configuration/ for details
 
-app = "canadian-luxurious-salon"
-primary_region = "yyz"  # Toronto, Canada - closest to Canadian business
+app = "canadian-salon-db"
+primary_region = "bom"  # Mumbai, India - same region as database
 
 [build]
 
