@@ -22,8 +22,10 @@ export default function Login() {
   });
 
   useEffect(() => {
-    if (user) setLocation("/admin");
-  }, [user, setLocation]);
+    if (user) {
+      window.location.href = "/admin";
+    }
+  }, [user]);
 
   function onSubmit(data: z.infer<typeof loginSchema>) {
     login(data);
