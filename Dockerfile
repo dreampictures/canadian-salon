@@ -45,12 +45,6 @@ COPY drizzle.config.ts ./
 COPY shared ./shared
 COPY tsconfig.json ./
 
-# Create non-root user for security
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nodejs -u 1001
-
-USER nodejs
-
 # Expose port
 EXPOSE 5000
 

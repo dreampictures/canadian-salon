@@ -7,7 +7,7 @@ primary_region = "bom"  # Mumbai, India - same region as database
 [build]
 
 [deploy]
-  release_command = "npm run db:push"
+  release_command = "npx drizzle-kit push"
 
 [env]
   NODE_ENV = "production"
