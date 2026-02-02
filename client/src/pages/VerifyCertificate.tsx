@@ -155,12 +155,13 @@ export default function VerifyCertificate() {
 
                 {/* Right Side - Details */}
                 <div className="md:w-2/3 p-8 md:p-12 bg-gradient-to-br from-white to-background/30">
-                  {/* Salon Header with decorative line */}
+                  {/* Salon Logo */}
                   <div className="mb-8 pb-6 border-b border-secondary/30">
-                    <h2 className="font-serif text-2xl md:text-3xl font-bold text-primary tracking-wide uppercase mb-1">
-                      Canadian Luxurious Salon
-                    </h2>
-                    <p className="text-secondary font-bold tracking-[0.3em] text-xs uppercase">Beauty is Our Duty</p>
+                    <img 
+                      src="/logo-full.png" 
+                      alt="Canadian Luxurious Salon" 
+                      className="h-14 md:h-16 object-contain"
+                    />
                   </div>
 
                   {/* Student Name - Prominent */}
