@@ -132,15 +132,14 @@ export async function registerRoutes(
       const input = api.certificates.create.input.parse(req.body);
       
       // Generate verify URL
-      const baseUrl = `${req.protocol}://${req.get("host")}`;
+      const host = req.get("host") || "localhost:5000";
+      const baseUrl = `${req.protocol}://${host}`;
       const verifyUrl = `${baseUrl}/verify?certificate=${input.certificateNumber}`;
       
-      // For now, we'll store the URL. Frontend can render QR code from this URL.
-      // If we needed to store the QR code image itself, we'd generate it here.
       const cert = await storage.createCertificate({
         ...input,
         verifyUrl,
-        qrCodeUrl: verifyUrl // Using the URL as the QR code content source
+        qrCodeUrl: verifyUrl
       });
       
       res.status(201).json(cert);
@@ -160,17 +159,17 @@ export async function registerRoutes(
     res.status(204).send();
   });
 
-  // Gallery
+  // Gallery Albums
   app.get(api.gallery.list.path, async (req, res) => {
-    const items = await storage.getGalleryItems();
-    res.json(items);
+    const albums = await storage.getGalleryAlbums();
+    res.json(albums);
   });
 
   app.post(api.gallery.create.path, isAuthenticated, async (req, res) => {
     try {
       const input = api.gallery.create.input.parse(req.body);
-      const item = await storage.createGalleryItem(input);
-      res.status(201).json(item);
+      const album = await storage.createGalleryAlbum(input);
+      res.status(201).json(album);
     } catch (err) {
       if (err instanceof z.ZodError) {
         return res.status(400).json({ message: err.errors[0].message });
@@ -180,7 +179,7 @@ export async function registerRoutes(
   });
 
   app.delete(api.gallery.delete.path, isAuthenticated, async (req, res) => {
-    await storage.deleteGalleryItem(Number(req.params.id));
+    await storage.deleteGalleryAlbum(Number(req.params.id));
     res.status(204).send();
   });
 
@@ -201,6 +200,11 @@ export async function registerRoutes(
   app.get(api.contact.list.path, isAuthenticated, async (req, res) => {
     const messages = await storage.getContactMessages();
     res.json(messages);
+  });
+
+  app.delete(api.contact.delete.path, isAuthenticated, async (req, res) => {
+    await storage.deleteContactMessage(Number(req.params.id));
+    res.status(204).send();
   });
 
   // Health

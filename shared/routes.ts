@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { insertCertificateSchema, insertContactMessageSchema, insertGalleryItemSchema, certificates, galleryItems, contactMessages } from './schema';
+import { insertCertificateSchema, insertContactMessageSchema, insertGalleryAlbumSchema, certificates, galleryAlbums, contactMessages } from './schema';
 
 export const errorSchemas = {
   validation: z.object({
@@ -95,15 +95,15 @@ export const api = {
       method: 'GET' as const,
       path: '/api/gallery',
       responses: {
-        200: z.array(z.custom<typeof galleryItems.$inferSelect>()),
+        200: z.array(z.custom<typeof galleryAlbums.$inferSelect>()),
       },
     },
     create: {
       method: 'POST' as const,
       path: '/api/gallery',
-      input: insertGalleryItemSchema,
+      input: insertGalleryAlbumSchema,
       responses: {
-        201: z.custom<typeof galleryItems.$inferSelect>(),
+        201: z.custom<typeof galleryAlbums.$inferSelect>(),
         400: errorSchemas.validation,
         401: errorSchemas.unauthorized,
       },
@@ -134,6 +134,15 @@ export const api = {
       responses: {
         200: z.array(z.custom<typeof contactMessages.$inferSelect>()),
         401: errorSchemas.unauthorized,
+      },
+    },
+    delete: {
+      method: 'DELETE' as const,
+      path: '/api/contact/:id',
+      responses: {
+        204: z.void(),
+        401: errorSchemas.unauthorized,
+        404: errorSchemas.notFound,
       },
     },
   },

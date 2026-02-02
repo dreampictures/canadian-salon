@@ -32,7 +32,7 @@ export default function VerifyCertificate() {
       <Navigation />
 
       <div className="pt-32 pb-24 px-6 flex-1 flex flex-col items-center">
-        {/* Search Section */}
+        {/* Search Section with Water Drop Gradient */}
         {!certificate && !isLoading && (
           <>
             <div className="text-center space-y-4 mb-12">
@@ -42,21 +42,29 @@ export default function VerifyCertificate() {
               </p>
             </div>
 
-            <form onSubmit={handleVerify} className="w-full max-w-md flex gap-4 mb-12" data-testid="form-verify">
-              <Input 
-                value={certInput}
-                onChange={(e) => setCertInput(e.target.value)}
-                placeholder="Enter Certificate Number"
-                className="h-12 bg-white/80 text-lg border-border/50"
-                data-testid="input-certificate-number"
-              />
-              <button 
-                type="submit" 
-                className="h-12 px-8 glass-button-secondary rounded-xl font-bold"
-                data-testid="button-verify"
-              >
-                <Search className="w-5 h-5" />
-              </button>
+            <form onSubmit={handleVerify} className="w-full max-w-lg" data-testid="form-verify">
+              <div className="water-drop-gradient rounded-2xl p-8 shadow-lg">
+                <label className="block text-foreground font-semibold mb-3 relative z-10">
+                  Enter Certificate Number
+                </label>
+                <div className="flex gap-4 relative z-10">
+                  <Input 
+                    value={certInput}
+                    onChange={(e) => setCertInput(e.target.value)}
+                    placeholder="e.g., LUX-2025-001"
+                    className="h-14 water-drop-input rounded-xl text-lg"
+                    data-testid="input-certificate-number"
+                  />
+                  <button 
+                    type="submit" 
+                    className="h-14 px-8 glass-button-primary rounded-xl font-bold flex items-center gap-2"
+                    data-testid="button-verify"
+                  >
+                    <Search className="w-5 h-5" />
+                    <span className="hidden sm:inline">Verify</span>
+                  </button>
+                </div>
+              </div>
             </form>
           </>
         )}

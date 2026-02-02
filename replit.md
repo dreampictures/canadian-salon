@@ -26,6 +26,8 @@ A luxury salon website with certificate verification system. Features include:
 - `.glass-button-primary`: Brown gradient button with glass effect
 - `.glass-button-secondary`: Golden gradient button with glass effect
 - `.glass-card`: Frosted glass card container
+- `.water-drop-gradient`: Blue aquatic gradient with backdrop blur for forms
+- `.water-drop-input`: Frosted glass input styling
 
 ## Key Routes
 - `/` - Home page
@@ -39,8 +41,14 @@ A luxury salon website with certificate verification system. Features include:
 
 ## Admin Access
 - Navigate manually to `/login`
-- Default credentials: admin / admin123
+- Login form has security enhancements: hidden username field, password visibility toggle
 - Dashboard only visible in nav when logged in
+
+## Gallery Albums
+- Gallery uses album-based system (max 10 photos per album)
+- Albums stored with URLs only (OneDrive embedded images supported)
+- Navigation arrows and image indicators for multi-photo albums
+- Categories: Hair, Makeup, Nails, Academy
 
 ## API Endpoints
 - `GET /api/health` - Health check

@@ -298,6 +298,68 @@
       0 8px 32px rgba(0, 0, 0, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.6);
   }
+
+  /* Water Drop Gradient Effect */
+  .water-drop-gradient {
+    background: linear-gradient(
+      180deg,
+      rgba(135, 206, 235, 0.15) 0%,
+      rgba(100, 181, 246, 0.25) 25%,
+      rgba(66, 165, 245, 0.3) 50%,
+      rgba(100, 181, 246, 0.25) 75%,
+      rgba(135, 206, 235, 0.15) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(135, 206, 235, 0.4);
+    box-shadow: 
+      0 10px 40px rgba(66, 165, 245, 0.2),
+      inset 0 2px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -2px 0 rgba(66, 165, 245, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .water-drop-gradient::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .water-drop-input {
+    background: linear-gradient(
+      180deg,
+      rgba(135, 206, 235, 0.1) 0%,
+      rgba(100, 181, 246, 0.15) 50%,
+      rgba(135, 206, 235, 0.1) 100%
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(100, 181, 246, 0.3);
+    box-shadow: 
+      inset 0 2px 4px rgba(66, 165, 245, 0.1),
+      0 2px 8px rgba(66, 165, 245, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .water-drop-input:focus {
+    border-color: rgba(66, 165, 245, 0.5);
+    box-shadow: 
+      inset 0 2px 4px rgba(66, 165, 245, 0.15),
+      0 4px 16px rgba(66, 165, 245, 0.2),
+      0 0 0 3px rgba(66, 165, 245, 0.1);
+  }
 }
 
 @layer utilities {

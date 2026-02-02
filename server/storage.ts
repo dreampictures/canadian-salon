@@ -1,17 +1,21 @@
 import { db } from "./db";
 import {
-  users, certificates, galleryItems, contactMessages,
-  type User, type Certificate, type GalleryItem, type ContactMessage,
-  type InsertUser, 
-  insertCertificateSchema, insertGalleryItemSchema, insertContactMessageSchema
+  users, certificates, galleryAlbums, contactMessages,
+  type User, type Certificate, type GalleryAlbum, type ContactMessage,
+  insertCertificateSchema, insertGalleryAlbumSchema, insertContactMessageSchema
 } from "@shared/schema";
 import { eq, desc } from "drizzle-orm";
 import { z } from "zod";
 
 // Define strict types for creation to avoid ambiguity
 export type CreateCertificateRequest = z.infer<typeof insertCertificateSchema>;
-export type CreateGalleryItemRequest = z.infer<typeof insertGalleryItemSchema>;
+export type CreateGalleryAlbumRequest = z.infer<typeof insertGalleryAlbumSchema>;
 export type CreateContactMessageRequest = z.infer<typeof insertContactMessageSchema>;
+
+export type InsertUser = {
+  username: string;
+  password: string;
+};
 
 export interface IStorage {
   // User (Admin)
@@ -27,14 +31,15 @@ export interface IStorage {
   createCertificate(cert: CreateCertificateRequest & { verifyUrl: string, qrCodeUrl?: string }): Promise<Certificate>;
   deleteCertificate(id: number): Promise<void>;
 
-  // Gallery
-  getGalleryItems(): Promise<GalleryItem[]>;
-  createGalleryItem(item: CreateGalleryItemRequest): Promise<GalleryItem>;
-  deleteGalleryItem(id: number): Promise<void>;
+  // Gallery Albums
+  getGalleryAlbums(): Promise<GalleryAlbum[]>;
+  createGalleryAlbum(album: CreateGalleryAlbumRequest): Promise<GalleryAlbum>;
+  deleteGalleryAlbum(id: number): Promise<void>;
 
   // Contact
   getContactMessages(): Promise<ContactMessage[]>;
   createContactMessage(message: CreateContactMessageRequest): Promise<ContactMessage>;
+  deleteContactMessage(id: number): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -82,18 +87,18 @@ export class DatabaseStorage implements IStorage {
     await db.delete(certificates).where(eq(certificates.id, id));
   }
 
-  // Gallery
-  async getGalleryItems(): Promise<GalleryItem[]> {
-    return await db.select().from(galleryItems).orderBy(desc(galleryItems.createdAt));
+  // Gallery Albums
+  async getGalleryAlbums(): Promise<GalleryAlbum[]> {
+    return await db.select().from(galleryAlbums).orderBy(desc(galleryAlbums.createdAt));
   }
 
-  async createGalleryItem(item: CreateGalleryItemRequest): Promise<GalleryItem> {
-    const [newItem] = await db.insert(galleryItems).values(item).returning();
-    return newItem;
+  async createGalleryAlbum(album: CreateGalleryAlbumRequest): Promise<GalleryAlbum> {
+    const [newAlbum] = await db.insert(galleryAlbums).values(album).returning();
+    return newAlbum;
   }
 
-  async deleteGalleryItem(id: number): Promise<void> {
-    await db.delete(galleryItems).where(eq(galleryItems.id, id));
+  async deleteGalleryAlbum(id: number): Promise<void> {
+    await db.delete(galleryAlbums).where(eq(galleryAlbums.id, id));
   }
 
   // Contact
@@ -104,6 +109,10 @@ export class DatabaseStorage implements IStorage {
   async createContactMessage(message: CreateContactMessageRequest): Promise<ContactMessage> {
     const [newMessage] = await db.insert(contactMessages).values(message).returning();
     return newMessage;
+  }
+
+  async deleteContactMessage(id: number): Promise<void> {
+    await db.delete(contactMessages).where(eq(contactMessages.id, id));
   }
 }
 

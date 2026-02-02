@@ -19,18 +19,18 @@ export const certificates = pgTable("certificates", {
   attendancePercentage: integer("attendance_percentage").notNull(),
   grade: text("grade").notNull(),
   issueDate: text("issue_date").notNull(), // ISO date string
-  studentPhoto: text("student_photo"), // URL
+  studentPhoto: text("student_photo"), // URL or Base64
   qrCodeUrl: text("qr_code_url"), // Generated URL or Base64
   verifyUrl: text("verify_url").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-// Gallery/Our Work
-export const galleryItems = pgTable("gallery_items", {
+// Gallery Albums (Multiple photos per album)
+export const galleryAlbums = pgTable("gallery_albums", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
-  imageUrl: text("image_url").notNull(),
-  category: text("category").notNull(), // e.g., 'Hair', 'Nails', 'Makeup'
+  category: text("category").notNull(), // e.g., 'Hair', 'Nails', 'Makeup', 'Academy'
+  imageUrls: text("image_urls").array().notNull(), // Array of URLs (max 10)
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -51,11 +51,24 @@ export const insertCertificateSchema = createInsertSchema(certificates).omit({
   qrCodeUrl: true, 
   verifyUrl: true 
 });
-export const insertGalleryItemSchema = createInsertSchema(galleryItems).omit({ id: true, createdAt: true });
-export const insertContactMessageSchema = createInsertSchema(contactMessages).omit({ id: true, createdAt: true });
+
+export const insertGalleryAlbumSchema = createInsertSchema(galleryAlbums).omit({ 
+  id: true, 
+  createdAt: true 
+}).extend({
+  imageUrls: z.array(z.string().url()).min(1).max(10)
+});
+
+export const insertContactMessageSchema = createInsertSchema(contactMessages)
+  .omit({ id: true, createdAt: true })
+  .extend({
+    name: z.string().min(1, "Name is required"),
+    email: z.string().email("Valid email is required"),
+    message: z.string().min(1, "Message is required"),
+  });
 
 // Types
 export type User = typeof users.$inferSelect;
 export type Certificate = typeof certificates.$inferSelect;
-export type GalleryItem = typeof galleryItems.$inferSelect;
+export type GalleryAlbum = typeof galleryAlbums.$inferSelect;
 export type ContactMessage = typeof contactMessages.$inferSelect;

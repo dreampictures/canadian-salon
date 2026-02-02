@@ -71,20 +71,26 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="glass-card p-8 md:p-12 rounded-2xl shadow-lg">
-            <h2 className="font-serif text-2xl font-bold text-primary mb-8">Send us a Message</h2>
+          {/* Contact Form with Water Drop Gradient */}
+          <div className="water-drop-gradient p-8 md:p-12 rounded-2xl shadow-lg">
+            <h2 className="font-serif text-2xl font-bold text-primary mb-8 relative z-10">Send us a Message</h2>
             
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative z-10">
                 <FormField
                   control={form.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-foreground font-semibold">Name</FormLabel>
+                      <FormLabel className="text-foreground font-semibold">Name <span className="text-destructive">*</span></FormLabel>
                       <FormControl>
-                        <Input placeholder="Your Name" {...field} className="h-12 bg-white/80 border-border/50" data-testid="input-name" />
+                        <Input 
+                          placeholder="Your Name" 
+                          {...field} 
+                          className="h-12 water-drop-input rounded-xl" 
+                          data-testid="input-name"
+                          required
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -96,9 +102,16 @@ export default function Contact() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-foreground font-semibold">Email</FormLabel>
+                      <FormLabel className="text-foreground font-semibold">Email <span className="text-destructive">*</span></FormLabel>
                       <FormControl>
-                        <Input placeholder="your@email.com" {...field} className="h-12 bg-white/80 border-border/50" data-testid="input-email" />
+                        <Input 
+                          placeholder="your@email.com" 
+                          type="email"
+                          {...field} 
+                          className="h-12 water-drop-input rounded-xl" 
+                          data-testid="input-email"
+                          required
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -110,9 +123,15 @@ export default function Contact() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-foreground font-semibold">Message</FormLabel>
+                      <FormLabel className="text-foreground font-semibold">Message <span className="text-destructive">*</span></FormLabel>
                       <FormControl>
-                        <Textarea placeholder="How can we help you?" className="min-h-[150px] bg-white/80 border-border/50 resize-none" {...field} data-testid="input-message" />
+                        <Textarea 
+                          placeholder="How can we help you?" 
+                          className="min-h-[150px] water-drop-input rounded-xl resize-none" 
+                          {...field} 
+                          data-testid="input-message"
+                          required
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
