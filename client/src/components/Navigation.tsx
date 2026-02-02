@@ -42,7 +42,7 @@ export function Navigation() {
               {link.label}
             </Link>
           ))}
-          {user ? (
+          {user && (
              <div className="flex items-center gap-4 border-l border-primary/20 pl-4">
                 <Link href="/admin" className="text-sm font-semibold text-primary hover:text-secondary">Dashboard</Link>
                 <button 
@@ -52,46 +52,10 @@ export function Navigation() {
                   Logout
                 </button>
              </div>
-          ) : (
-             <Link href="/login" className="hidden md:block text-xs font-medium text-primary/50 hover:text-primary ml-4">
-               Admin
-             </Link>
           )}
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden text-primary" onClick={toggleMenu}>
-          {isOpen ? <X /> : <Menu />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-background border-b border-border p-6 flex flex-col space-y-4 shadow-lg animate-in slide-in-from-top-5">
-          {links.map((link) => (
-            <Link 
-              key={link.href} 
-              href={link.href} 
-              onClick={() => setIsOpen(false)}
-              className={cn(
-                "text-lg font-serif",
-                location === link.href ? "text-secondary" : "text-primary"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
-          {user && (
-            <Link 
-              href="/admin" 
-              onClick={() => setIsOpen(false)}
-              className="text-lg font-serif text-primary border-t border-border pt-4"
-            >
-              Dashboard
-            </Link>
-          )}
-        </div>
-      )}
     </nav>
   );
 }
