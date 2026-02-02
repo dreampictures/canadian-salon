@@ -113,12 +113,24 @@ export default function VerifyCertificate() {
               </div>
             </div>
 
-            {/* Certificate Card */}
-            <div className="glass-card rounded-lg shadow-xl overflow-hidden">
+            {/* Certificate Card with Drop Shadow */}
+            <div 
+              className="bg-white rounded-2xl overflow-hidden border border-border/20 shadow-2xl"
+              style={{ 
+                boxShadow: '0 25px 50px -12px rgba(92, 61, 46, 0.25), 0 12px 24px -8px rgba(92, 61, 46, 0.15), 0 4px 8px -2px rgba(0, 0, 0, 0.1)'
+              }}
+            >
               <div className="flex flex-col md:flex-row">
                 {/* Left Side - Photo Section */}
-                <div className="md:w-1/3 bg-gradient-to-b from-primary/10 to-primary/5 p-8 flex flex-col items-center justify-center border-l-4 border-l-primary">
-                  <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-white border-4 border-primary/30 overflow-hidden flex items-center justify-center mb-4 relative shadow-lg">
+                <div className="md:w-1/3 bg-gradient-to-br from-primary/15 via-primary/10 to-secondary/10 p-8 flex flex-col items-center justify-center relative">
+                  {/* Decorative border */}
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-primary"></div>
+                  
+                  {/* Photo with enhanced shadow */}
+                  <div 
+                    className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-white border-4 border-white overflow-hidden flex items-center justify-center mb-6 relative"
+                    style={{ boxShadow: '0 10px 40px -10px rgba(92, 61, 46, 0.4), 0 4px 12px rgba(0,0,0,0.1)' }}
+                  >
                     {certificate.studentPhoto ? (
                       <img 
                         src={certificate.studentPhoto} 
@@ -126,63 +138,70 @@ export default function VerifyCertificate() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <User className="w-16 h-16 text-muted-foreground" />
+                      <User className="w-20 h-20 text-muted-foreground/50" />
                     )}
-                    <div className="absolute -bottom-1 -right-1 w-10 h-10 glass-button-primary rounded-full flex items-center justify-center border-2 border-white">
-                      <User className="w-5 h-5" />
-                    </div>
                   </div>
                   
-                  <div className="flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full font-bold text-sm mb-2">
-                    <CheckCircle className="w-4 h-4" />
+                  {/* Verified Badge with shadow */}
+                  <div 
+                    className="flex items-center gap-2 bg-green-500 text-white px-5 py-2.5 rounded-full font-bold text-sm mb-3"
+                    style={{ boxShadow: '0 4px 14px rgba(34, 197, 94, 0.4)' }}
+                  >
+                    <CheckCircle className="w-5 h-5" />
                     <span>Verified Valid</span>
                   </div>
-                  <p className="text-xs uppercase tracking-widest text-foreground font-semibold">Official Record</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-primary/70 font-semibold">Official Record</p>
                 </div>
 
                 {/* Right Side - Details */}
-                <div className="md:w-2/3 p-8 md:p-10">
-                  {/* Salon Header */}
-                  <div className="mb-8">
-                    <h2 className="font-serif text-2xl md:text-3xl font-bold text-primary tracking-wide uppercase">
+                <div className="md:w-2/3 p-8 md:p-12 bg-gradient-to-br from-white to-background/30">
+                  {/* Salon Header with decorative line */}
+                  <div className="mb-8 pb-6 border-b border-secondary/30">
+                    <h2 className="font-serif text-2xl md:text-3xl font-bold text-primary tracking-wide uppercase mb-1">
                       Canadian Luxurious Salon
                     </h2>
-                    <p className="text-primary font-semibold tracking-widest text-sm uppercase">Beauty is Our Duty</p>
+                    <p className="text-secondary font-bold tracking-[0.3em] text-xs uppercase">Beauty is Our Duty</p>
                   </div>
 
-                  {/* Student Name */}
-                  <div className="mb-6">
-                    <p className="text-xs uppercase tracking-wider text-foreground/70 mb-1 font-semibold">Student Name</p>
-                    <p className="font-serif text-2xl font-bold text-primary">{certificate.studentName}</p>
+                  {/* Student Name - Prominent */}
+                  <div className="mb-8">
+                    <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground mb-2 font-semibold">Student Name</p>
+                    <p className="font-serif text-3xl font-bold text-primary">{certificate.studentName}</p>
                   </div>
 
                   {/* Details Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div>
-                      <p className="text-xs uppercase tracking-wider text-foreground/70 mb-1 font-semibold">Course Name</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
+                    <div className="p-4 rounded-xl bg-primary/5">
+                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1 font-semibold">Course Name</p>
                       <p className="text-primary font-bold text-lg">{certificate.courseName}</p>
                     </div>
-                    <div>
-                      <p className="text-xs uppercase tracking-wider text-foreground/70 mb-1 font-semibold">Certificate Number</p>
-                      <span className="inline-block glass-button-secondary font-mono font-bold px-3 py-1 rounded-lg">
+                    <div className="p-4 rounded-xl bg-secondary/10">
+                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1 font-semibold">Certificate Number</p>
+                      <span 
+                        className="inline-block bg-secondary text-primary font-mono font-bold px-4 py-1.5 rounded-lg text-sm"
+                        style={{ boxShadow: '0 2px 8px rgba(201, 163, 86, 0.3)' }}
+                      >
                         {certificate.certificateNumber}
                       </span>
                     </div>
-                    <div>
-                      <p className="text-xs uppercase tracking-wider text-foreground/70 mb-1 font-semibold">Course Duration</p>
-                      <p className="text-foreground font-semibold">{certificate.courseDuration}</p>
+                    <div className="p-4 rounded-xl bg-background">
+                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1 font-semibold">Course Duration</p>
+                      <p className="text-foreground font-bold text-lg">{certificate.courseDuration}</p>
                     </div>
-                    <div>
-                      <p className="text-xs uppercase tracking-wider text-foreground/70 mb-1 font-semibold">Issue Date</p>
-                      <p className="text-foreground font-semibold">{certificate.issueDate}</p>
+                    <div className="p-4 rounded-xl bg-background">
+                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1 font-semibold">Issue Date</p>
+                      <p className="text-foreground font-bold text-lg">{certificate.issueDate}</p>
                     </div>
-                    <div>
-                      <p className="text-xs uppercase tracking-wider text-foreground/70 mb-1 font-semibold">Attendance Percentage</p>
-                      <p className="text-foreground font-semibold">{certificate.attendancePercentage}%</p>
+                    <div className="p-4 rounded-xl bg-background">
+                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1 font-semibold">Attendance</p>
+                      <p className="text-foreground font-bold text-lg">{certificate.attendancePercentage}%</p>
                     </div>
-                    <div>
-                      <p className="text-xs uppercase tracking-wider text-foreground/70 mb-1 font-semibold">Final Grade</p>
-                      <span className="inline-flex items-center justify-center w-10 h-10 glass-button-primary font-bold rounded-lg text-lg">
+                    <div className="p-4 rounded-xl bg-primary/5">
+                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1 font-semibold">Final Grade</p>
+                      <span 
+                        className="inline-flex items-center justify-center w-12 h-12 bg-primary text-white font-bold rounded-xl text-xl"
+                        style={{ boxShadow: '0 4px 14px rgba(92, 61, 46, 0.4)' }}
+                      >
                         {certificate.grade}
                       </span>
                     </div>
@@ -191,13 +210,16 @@ export default function VerifyCertificate() {
               </div>
 
               {/* Footer */}
-              <div className="bg-primary/5 px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-2 border-t border-border/30">
-                <p className="text-xs text-foreground/70 font-medium">
+              <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-3 border-t border-border/20">
+                <p className="text-sm text-foreground/70 font-medium">
                   &copy; Canadian Luxurious Salon Official Records
                 </p>
-                <p className="text-xs font-bold">
-                  Verification Status: <span className="text-green-600 uppercase">Valid</span>
-                </p>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                  <p className="text-sm font-bold">
+                    Verification Status: <span className="text-green-600 uppercase">Valid</span>
+                  </p>
+                </div>
               </div>
             </div>
 
