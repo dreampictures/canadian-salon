@@ -155,8 +155,8 @@ export default function VerifyCertificate() {
 
                 {/* Right Side - Details */}
                 <div className="md:w-2/3 p-8 md:p-12 bg-gradient-to-br from-white to-background/30">
-                  {/* Salon Logo */}
-                  <div className="mb-8 pb-6 border-b border-secondary/30">
+                  {/* Salon Logo - Centered */}
+                  <div className="mb-8 pb-6 border-b border-secondary/30 flex justify-center">
                     <img 
                       src="/logo-full.png" 
                       alt="Canadian Luxurious Salon" 
