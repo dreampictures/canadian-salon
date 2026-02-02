@@ -8,7 +8,6 @@ import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 type ContactForm = z.infer<typeof insertContactMessageSchema>;
@@ -33,7 +32,7 @@ export default function Contact() {
       
       <div className="pt-32 pb-12 bg-primary text-white text-center">
         <h1 className="font-serif text-5xl font-bold mb-4">Get in Touch</h1>
-        <p className="text-white/70 max-w-2xl mx-auto px-6">We'd love to hear from you. Book an appointment or ask about our courses.</p>
+        <p className="text-white/80 max-w-2xl mx-auto px-6">We'd love to hear from you. Book an appointment or ask about our courses.</p>
       </div>
 
       <main className="flex-1 py-16 px-6 max-w-7xl mx-auto w-full">
@@ -42,7 +41,7 @@ export default function Contact() {
           <div className="space-y-12">
             <div>
               <h2 className="font-serif text-3xl font-bold text-primary mb-6">Contact Information</h2>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-foreground leading-relaxed">
                 Visit our luxury salon for a transformative experience. 
                 Our team of experts is ready to serve you.
               </p>
@@ -55,13 +54,13 @@ export default function Contact() {
                 { icon: Mail, title: "Email", text: "hello@luxesalon.com" },
                 { icon: Clock, title: "Hours", text: "Mon-Sat: 9am - 8pm, Sun: Closed" },
               ].map((item, idx) => (
-                <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-white border border-border/50 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="p-3 rounded-full bg-secondary/10 text-secondary">
+                <div key={idx} className="flex items-start gap-4 p-4 rounded-xl glass-card shadow-sm hover:shadow-md transition-shadow">
+                  <div className="p-3 rounded-full glass-button-primary">
                     <item.icon className="w-6 h-6" />
                   </div>
                   <div>
                     <h4 className="font-bold text-primary">{item.title}</h4>
-                    <p className="text-muted-foreground">{item.text}</p>
+                    <p className="text-foreground">{item.text}</p>
                   </div>
                 </div>
               ))}
@@ -69,7 +68,7 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white p-8 md:p-12 rounded-2xl shadow-lg border border-border/50">
+          <div className="glass-card p-8 md:p-12 rounded-2xl shadow-lg">
             <h2 className="font-serif text-2xl font-bold text-primary mb-8">Send us a Message</h2>
             
             <Form {...form}>
@@ -79,9 +78,9 @@ export default function Contact() {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel className="text-foreground font-semibold">Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="Your Name" {...field} className="h-12 bg-background" />
+                        <Input placeholder="Your Name" {...field} className="h-12 bg-white/80 border-border/50" data-testid="input-name" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -93,9 +92,9 @@ export default function Contact() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel className="text-foreground font-semibold">Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="your@email.com" {...field} className="h-12 bg-background" />
+                        <Input placeholder="your@email.com" {...field} className="h-12 bg-white/80 border-border/50" data-testid="input-email" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -107,22 +106,23 @@ export default function Contact() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Message</FormLabel>
+                      <FormLabel className="text-foreground font-semibold">Message</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="How can we help you?" className="min-h-[150px] bg-background resize-none" {...field} />
+                        <Textarea placeholder="How can we help you?" className="min-h-[150px] bg-white/80 border-border/50 resize-none" {...field} data-testid="input-message" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
 
-                <Button 
+                <button 
                   type="submit" 
                   disabled={isPending}
-                  className="w-full h-12 text-lg font-semibold bg-primary hover:bg-primary/90 text-white"
+                  className="w-full h-12 text-lg font-bold glass-button-primary rounded-xl disabled:opacity-50"
+                  data-testid="button-send-message"
                 >
                   {isPending ? "Sending..." : "Send Message"}
-                </Button>
+                </button>
               </form>
             </Form>
           </div>

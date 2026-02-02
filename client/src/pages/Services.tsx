@@ -2,7 +2,6 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Check, Phone, MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 const services = [
@@ -73,26 +72,26 @@ export default function Services() {
       
       <div className="pt-32 pb-12 bg-primary text-white text-center">
         <h1 className="font-serif text-5xl font-bold mb-4">Our Services & Courses</h1>
-        <p className="text-white/70 max-w-2xl mx-auto px-6">Explore our premium beauty treatments and professional certification programs.</p>
+        <p className="text-white/80 max-w-2xl mx-auto px-6">Explore our premium beauty treatments and professional certification programs.</p>
       </div>
 
       <main className="flex-1 py-16">
         <div className="max-w-7xl mx-auto px-6">
           
-          {/* Services Grid - Redesigned */}
+          {/* Services Grid - Redesigned with glass effect */}
           <SectionHeader title="Salon Services" centered className="mb-16" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
             {services.map((category, idx) => (
-              <div key={idx} className="bg-white rounded-xl shadow-sm border border-border/50 overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="bg-primary/5 px-6 py-4 border-b border-border/50">
+              <div key={idx} className="glass-card rounded-xl overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="bg-primary/10 px-6 py-4 border-b border-white/20">
                   <h3 className="font-serif text-2xl font-bold text-primary">{category.category}</h3>
                 </div>
                 <div className="p-6">
                   <ul className="space-y-0">
                     {category.items.map((item, i) => (
                       <li key={i} className="flex justify-between items-center py-4 border-b border-border/30 last:border-b-0">
-                        <span className="text-foreground font-medium">{item.name}</span>
-                        <span className="bg-secondary/20 text-primary font-bold px-4 py-1.5 rounded-full text-sm">
+                        <span className="text-foreground font-semibold">{item.name}</span>
+                        <span className="glass-button-secondary px-4 py-1.5 rounded-full text-sm font-bold">
                           {item.price}
                         </span>
                       </li>
@@ -108,19 +107,19 @@ export default function Services() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
             {courses.map((course, idx) => (
               <div key={idx} className="relative group">
-                <div className="absolute inset-0 bg-secondary/10 transform translate-x-2 translate-y-2 rounded-2xl group-hover:translate-x-3 group-hover:translate-y-3 transition-transform" />
-                <div className="relative bg-white border border-border rounded-2xl p-8 hover:-translate-y-1 transition-transform duration-300">
+                <div className="absolute inset-0 bg-secondary/20 transform translate-x-2 translate-y-2 rounded-2xl group-hover:translate-x-3 group-hover:translate-y-3 transition-transform" />
+                <div className="relative glass-card rounded-2xl p-8 hover:-translate-y-1 transition-transform duration-300">
                   <div className="flex justify-between items-start mb-4">
-                    <span className="bg-primary/5 text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Course</span>
-                    <span className="font-bold text-secondary text-2xl">{course.price}</span>
+                    <span className="glass-button-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Course</span>
+                    <span className="font-bold text-primary text-2xl">{course.price}</span>
                   </div>
                   <h3 className="font-serif text-2xl font-bold text-primary mb-2">{course.title}</h3>
-                  <p className="text-muted-foreground mb-6 text-sm">{course.duration}</p>
+                  <p className="text-muted-foreground mb-6 text-sm font-medium">{course.duration}</p>
                   
                   <ul className="space-y-3 mb-8">
                     {course.features.map((feature, i) => (
-                      <li key={i} className="flex items-center text-sm text-foreground/80">
-                        <Check className="w-4 h-4 text-secondary mr-3 shrink-0" />
+                      <li key={i} className="flex items-center text-sm text-foreground font-medium">
+                        <Check className="w-4 h-4 text-primary mr-3 shrink-0" />
                         {feature}
                       </li>
                     ))}
@@ -128,7 +127,7 @@ export default function Services() {
 
                   <button 
                     onClick={() => handleEnroll(course.title)}
-                    className="w-full py-3 bg-secondary text-primary font-bold rounded-lg hover:bg-secondary/90 transition-colors"
+                    className="w-full py-3 glass-button-secondary font-bold rounded-lg"
                     data-testid={`button-enroll-${idx}`}
                   >
                     Enroll Now
@@ -140,12 +139,12 @@ export default function Services() {
 
           {/* Enrollment Section */}
           <div id="enroll-section" className="scroll-mt-32">
-            <div className="bg-gradient-to-br from-primary to-primary/90 rounded-2xl p-8 md:p-12 text-white">
+            <div className="glass-card bg-gradient-to-br from-primary/95 to-primary/85 rounded-2xl p-8 md:p-12 text-white">
               <div className="max-w-3xl mx-auto text-center">
                 <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">
                   {selectedCourse ? `Enroll in ${selectedCourse}` : "Ready to Start Your Journey?"}
                 </h2>
-                <p className="text-white/80 mb-8 text-lg">
+                <p className="text-white/90 mb-8 text-lg">
                   {selectedCourse 
                     ? "Contact us now to secure your spot and begin your professional beauty career."
                     : "Choose a course above and take the first step towards your beauty career."
@@ -153,30 +152,27 @@ export default function Services() {
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    size="lg" 
-                    className="bg-white text-primary hover:bg-white/90 font-bold gap-2"
+                  <button 
                     onClick={() => window.location.href = '/contact'}
+                    className="glass-button px-8 py-3 rounded-xl font-bold text-primary flex items-center justify-center gap-2"
                     data-testid="button-contact-us"
                   >
                     <MessageCircle className="w-5 h-5" />
                     Contact Us
-                  </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
-                    className="border-white text-white hover:bg-white/10 font-bold gap-2"
+                  </button>
+                  <button 
                     onClick={() => window.open('tel:+1234567890', '_self')}
+                    className="glass-button px-8 py-3 rounded-xl font-bold text-primary flex items-center justify-center gap-2"
                     data-testid="button-call-now"
                   >
                     <Phone className="w-5 h-5" />
                     Call Now
-                  </Button>
+                  </button>
                 </div>
 
                 {selectedCourse && (
-                  <p className="mt-6 text-white/60 text-sm">
-                    Selected course: <span className="font-semibold text-secondary">{selectedCourse}</span>
+                  <p className="mt-6 text-white/70 text-sm">
+                    Selected course: <span className="font-bold text-white">{selectedCourse}</span>
                   </p>
                 )}
               </div>
