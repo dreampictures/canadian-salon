@@ -215,10 +215,11 @@ export async function registerRoutes(
 }
 
 async function seedAdmin() {
-  const existingAdmin = await storage.getUserByUsername("admin");
+  const adminUsername = "714752420017";
+  const existingAdmin = await storage.getUserByUsername(adminUsername);
   if (!existingAdmin) {
-    const password = await hashPassword("admin123");
-    await storage.createUser({ username: "admin", password });
-    console.log("Admin user created: admin / admin123");
+    const password = await hashPassword("Ba@606368");
+    await storage.createUser({ username: adminUsername, password });
+    console.log("Admin user created");
   }
 }
