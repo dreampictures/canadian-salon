@@ -1,0 +1,135 @@
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
+import { useSendMessage } from "@/hooks/use-contact";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { insertContactMessageSchema } from "@shared/schema";
+import { z } from "zod";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
+
+type ContactForm = z.infer<typeof insertContactMessageSchema>;
+
+export default function Contact() {
+  const { mutate: sendMessage, isPending } = useSendMessage();
+
+  const form = useForm<ContactForm>({
+    resolver: zodResolver(insertContactMessageSchema),
+    defaultValues: { name: "", email: "", message: "" }
+  });
+
+  function onSubmit(data: ContactForm) {
+    sendMessage(data, {
+      onSuccess: () => form.reset()
+    });
+  }
+
+  return (
+    <div className="min-h-screen bg-background flex flex-col">
+      <Navigation />
+      
+      <div className="pt-32 pb-12 bg-primary text-white text-center">
+        <h1 className="font-serif text-5xl font-bold mb-4">Get in Touch</h1>
+        <p className="text-white/70 max-w-2xl mx-auto px-6">We'd love to hear from you. Book an appointment or ask about our courses.</p>
+      </div>
+
+      <main className="flex-1 py-16 px-6 max-w-7xl mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Contact Info */}
+          <div className="space-y-12">
+            <div>
+              <h2 className="font-serif text-3xl font-bold text-primary mb-6">Contact Information</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Visit our luxury salon for a transformative experience. 
+                Our team of experts is ready to serve you.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {[
+                { icon: MapPin, title: "Location", text: "123 Luxury Ave, Beverly Hills, CA 90210" },
+                { icon: Phone, title: "Phone", text: "+1 (555) 123-4567" },
+                { icon: Mail, title: "Email", text: "hello@luxesalon.com" },
+                { icon: Clock, title: "Hours", text: "Mon-Sat: 9am - 8pm, Sun: Closed" },
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-white border border-border/50 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="p-3 rounded-full bg-secondary/10 text-secondary">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-primary">{item.title}</h4>
+                    <p className="text-muted-foreground">{item.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="bg-white p-8 md:p-12 rounded-2xl shadow-lg border border-border/50">
+            <h2 className="font-serif text-2xl font-bold text-primary mb-8">Send us a Message</h2>
+            
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Your Name" {...field} className="h-12 bg-background" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input placeholder="your@email.com" {...field} className="h-12 bg-background" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Message</FormLabel>
+                      <FormControl>
+                        <Textarea placeholder="How can we help you?" className="min-h-[150px] bg-background resize-none" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button 
+                  type="submit" 
+                  disabled={isPending}
+                  className="w-full h-12 text-lg font-semibold bg-primary hover:bg-primary/90 text-white"
+                >
+                  {isPending ? "Sending..." : "Send Message"}
+                </Button>
+              </form>
+            </Form>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
