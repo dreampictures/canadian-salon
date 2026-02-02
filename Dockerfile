@@ -3,14 +3,25 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copy package files
+# Copy package files first for better caching
 COPY package*.json ./
 
 # Install all dependencies (including devDependencies for build)
 RUN npm ci
 
-# Copy source code
-COPY . .
+# Copy configuration files
+COPY tsconfig.json ./
+COPY vite.config.ts ./
+COPY tailwind.config.ts ./
+COPY postcss.config.js ./
+COPY drizzle.config.ts ./
+COPY components.json ./
+
+# Copy source directories
+COPY client ./client
+COPY server ./server
+COPY shared ./shared
+COPY script ./script
 
 # Build the application
 RUN npm run build
@@ -24,7 +35,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install production dependencies only
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 # Copy built application from builder
 COPY --from=builder /app/dist ./dist
