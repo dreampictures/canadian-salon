@@ -56,6 +56,38 @@ export function Navigation() {
         </div>
 
         {/* Mobile Menu Button */}
+        <button className="md:hidden text-primary" onClick={toggleMenu}>
+          {isOpen ? <X /> : <Menu />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-background border-b border-border p-6 flex flex-col space-y-4 shadow-lg animate-in slide-in-from-top-5">
+          {links.map((link) => (
+            <Link 
+              key={link.href} 
+              href={link.href} 
+              onClick={() => setIsOpen(false)}
+              className={cn(
+                "text-lg font-serif",
+                location === link.href ? "text-secondary" : "text-primary"
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
+          {user && (
+            <Link 
+              href="/admin" 
+              onClick={() => setIsOpen(false)}
+              className="text-lg font-serif text-primary border-t border-border pt-4"
+            >
+              Dashboard
+            </Link>
+          )}
+        </div>
+      )}
     </nav>
   );
 }
