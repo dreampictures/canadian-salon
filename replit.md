@@ -14,17 +14,17 @@ A luxury salon website with certificate verification system. Features include:
 - **Auth**: Passport.js with session-based authentication
 
 ## Color Theme
-- Primary: Deep warm brown (#5C3D2E) - improved contrast
-- Secondary: Golden/copper (#C9A356) - more saturated
+- Primary: Vibrant Orange (#F26522) - matches logo
+- Secondary: Golden/Amber (#DC8C3C) - complements orange
 - Background: Cream (#FAF9F6)
-- Foreground: Dark brown for better text visibility
+- Foreground: Dark orange-brown for better text visibility
 - Fonts: Playfair Display (headings), Inter (body)
 
 ## Glass Gradient Design (iOS Style)
 - `.glass-header`: Frosted glass navigation with blur effect
 - `.glass-button`: Light translucent button with depth
-- `.glass-button-primary`: Brown gradient button with glass effect
-- `.glass-button-secondary`: Golden gradient button with glass effect
+- `.glass-button-primary`: Orange gradient button with glass effect
+- `.glass-button-secondary`: Amber gradient button with glass effect
 - `.glass-card`: Frosted glass card container
 - `.water-drop-gradient`: Blue aquatic gradient with backdrop blur for forms
 - `.water-drop-input`: Frosted glass input styling
