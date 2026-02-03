@@ -1,5 +1,6 @@
 import { Link } from "wouter";
-import { Facebook, Instagram, Twitter, MapPin, Phone, Mail } from "lucide-react";
+import { Facebook, Instagram, MapPin, Phone, Mail } from "lucide-react";
+import { SiX } from "react-icons/si";
 
 export function Footer() {
   return (
@@ -19,7 +20,7 @@ export function Footer() {
               <Facebook className="w-5 h-5" />
             </a>
             <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-secondary hover:text-primary transition-colors">
-              <Twitter className="w-5 h-5" />
+              <SiX className="w-5 h-5" />
             </a>
           </div>
         </div>
