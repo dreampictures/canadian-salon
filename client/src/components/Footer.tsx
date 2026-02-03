@@ -26,7 +26,7 @@ export function Footer() {
 
         {/* Quick Links */}
         <div className="space-y-4">
-          <h4 className="font-serif text-xl font-semibold text-secondary">Quick Links</h4>
+          <h4 className="font-serif text-xl font-semibold text-white">Quick Links</h4>
           <ul className="space-y-2">
             {[
               { label: "Home", href: "/" },
@@ -46,7 +46,7 @@ export function Footer() {
 
         {/* Contact Info */}
         <div className="space-y-4">
-          <h4 className="font-serif text-xl font-semibold text-secondary">Contact Us</h4>
+          <h4 className="font-serif text-xl font-semibold text-white">Contact Us</h4>
           <div className="space-y-3">
             <div className="flex items-start gap-3 text-primary-foreground/70">
               <MapPin className="w-5 h-5 mt-0.5 text-secondary shrink-0" />
