@@ -10,7 +10,7 @@ export default function About() {
       
       {/* Header */}
       <div className="pt-32 pb-16 bg-primary text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/salon/interior-header.jpg')] bg-cover bg-center opacity-10" />
+        <div className="absolute inset-0 bg-[url('/images/salon/interior-header.png')] bg-cover bg-center opacity-10" />
         <div className="relative z-10 px-6">
           <h1 className="font-serif text-5xl font-bold mb-6">Our Story</h1>
           <p className="text-white/80 max-w-2xl mx-auto text-lg">
@@ -36,8 +36,8 @@ export default function About() {
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4">
-             <img src="/images/salon/interior-2.jpg" className="rounded-2xl shadow-lg mt-8" alt="Salon Interior" />
-             <img src="/images/staff/makeup-artist.jpg" className="rounded-2xl shadow-lg" alt="Makeup Artist" />
+             <img src="/images/salon/interior-2.png" className="rounded-2xl shadow-lg mt-8" alt="Salon Interior" />
+             <img src="/images/staff/makeup-artist.png" className="rounded-2xl shadow-lg" alt="Makeup Artist" />
           </div>
         </div>
 
@@ -61,9 +61,9 @@ export default function About() {
           <SectionHeader title="Meet Our Experts" subtitle="The talented hands behind our success." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             {[
-              { name: "Sarah Jenkins", role: "Master Stylist", img: "/images/staff/sarah.jpg" },
-              { name: "David Chen", role: "Senior Colorist", img: "/images/staff/david.jpg" },
-              { name: "Elena Rodriguez", role: "Head of Academy", img: "/images/staff/elena.jpg" },
+              { name: "Sarah Jenkins", role: "Master Stylist", img: "/images/staff/sarah.png" },
+              { name: "David Chen", role: "Senior Colorist", img: "/images/staff/david.png" },
+              { name: "Elena Rodriguez", role: "Head of Academy", img: "/images/staff/elena.png" },
             ].map((member, idx) => (
               <div key={idx} className="group">
                 <div className="overflow-hidden rounded-xl mb-4 shadow-lg">
