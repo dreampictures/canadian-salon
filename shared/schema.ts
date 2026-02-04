@@ -57,7 +57,7 @@ export const insertGalleryAlbumSchema = createInsertSchema(galleryAlbums).omit({
   id: true, 
   createdAt: true 
 }).extend({
-  imageUrls: z.array(z.string().url()).min(1).max(10)
+  imageUrls: z.array(z.string()).min(1).max(10)
 });
 
 export const insertContactMessageSchema = createInsertSchema(contactMessages)

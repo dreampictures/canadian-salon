@@ -10,7 +10,7 @@ export default function About() {
       
       {/* Header */}
       <div className="pt-32 pb-16 bg-primary text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center opacity-10" />
+        <div className="absolute inset-0 bg-[url('/images/salon/interior-header.jpg')] bg-cover bg-center opacity-10" />
         <div className="relative z-10 px-6">
           <h1 className="font-serif text-5xl font-bold mb-6">Our Story</h1>
           <p className="text-white/80 max-w-2xl mx-auto text-lg">
@@ -36,8 +36,8 @@ export default function About() {
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4">
-             <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&q=80&w=600" className="rounded-2xl shadow-lg mt-8" alt="Salon Interior" />
-             <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=600" className="rounded-2xl shadow-lg" alt="Makeup Artist" />
+             <img src="/images/salon/interior-2.jpg" className="rounded-2xl shadow-lg mt-8" alt="Salon Interior" />
+             <img src="/images/staff/makeup-artist.jpg" className="rounded-2xl shadow-lg" alt="Makeup Artist" />
           </div>
         </div>
 
@@ -61,9 +61,9 @@ export default function About() {
           <SectionHeader title="Meet Our Experts" subtitle="The talented hands behind our success." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             {[
-              { name: "Sarah Jenkins", role: "Master Stylist", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=500" },
-              { name: "David Chen", role: "Senior Colorist", img: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&q=80&w=500" },
-              { name: "Elena Rodriguez", role: "Head of Academy", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=500" },
+              { name: "Sarah Jenkins", role: "Master Stylist", img: "/images/staff/sarah.jpg" },
+              { name: "David Chen", role: "Senior Colorist", img: "/images/staff/david.jpg" },
+              { name: "Elena Rodriguez", role: "Head of Academy", img: "/images/staff/elena.jpg" },
             ].map((member, idx) => (
               <div key={idx} className="group">
                 <div className="overflow-hidden rounded-xl mb-4 shadow-lg">

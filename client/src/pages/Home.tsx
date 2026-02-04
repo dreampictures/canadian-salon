@@ -16,7 +16,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-primary/40 z-10 mix-blend-multiply" />
           <img 
-            src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=2000" 
+            src="/images/salon/interior-1.jpg" 
             alt="Luxury Salon Interior" 
             className="w-full h-full object-cover"
           />
@@ -134,7 +134,7 @@ export default function Home() {
             </div>
             <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                <img 
-                 src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&q=80&w=1000" 
+                 src="/images/services/salon-service-1.jpg" 
                  alt="Salon Service" 
                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                />
